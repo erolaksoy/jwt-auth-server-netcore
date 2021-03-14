@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using WorkJwtExampleServer.Data.AppContext;
 
 namespace WorkJwtExampleServer.Web
 {
@@ -32,6 +34,12 @@ namespace WorkJwtExampleServer.Web
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WorkJwtExampleServer.Web", Version = "v1" });
             });
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                    opt => opt.MigrationsAssembly("WorkJwtExampleServer.Data"));
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
