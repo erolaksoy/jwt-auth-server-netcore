@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WorkJwtExampleServer.Core.Entities
 {
-    public class UserRefreshToken
+    public class UserRefreshToken : IEntity
     {
         public int Id { get; set; }
         public string RefreshToken { get; set; }

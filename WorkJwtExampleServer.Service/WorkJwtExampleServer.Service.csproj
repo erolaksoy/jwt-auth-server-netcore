@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WorkJwtExampleServer.Core\WorkJwtExampleServer.Core.csproj" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WorkJwtExampleServer.Data\WorkJwtExampleServer.Data.csproj" />
   </ItemGroup>
 
 </Project>

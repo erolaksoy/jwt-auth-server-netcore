@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace WorkJwtExampleServer.Core.Entities
 {
-    public class AppUser : IdentityUser
+    public class AppUser : IdentityUser, IEntity
     {
         public virtual IEnumerable<FlashCard> FlashCards { get; set; }
     }

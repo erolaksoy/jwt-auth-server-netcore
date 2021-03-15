@@ -13,9 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WorkJwtExampleServer.Core\WorkJwtExampleServer.Core.csproj" />
-    <ProjectReference Include="..\WorkJwtExampleServer.Data\WorkJwtExampleServer.Data.csproj" />
     <ProjectReference Include="..\WorkJwtExampleServer.Service\WorkJwtExampleServer.Service.csproj" />
+    <ProjectReference Include="..\WorkJwtExampleServer.SharedLibrary\WorkJwtExampleServer.SharedLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

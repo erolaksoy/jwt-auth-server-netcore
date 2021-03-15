@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WorkJwtExampleServer.Core.Entities
 {
-    public class FlashCard
+    public class FlashCard : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

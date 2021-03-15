@@ -14,19 +14,19 @@ namespace WorkJwtExampleServer.Data.UnitOfWork
     public class UnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _context;
-        private  GenericRepository<FlashCard> _flashCardRepository;
-        private  GenericRepository<UserRefreshToken> _userRefreshTokenRepository;
+        //private  GenericRepository<FlashCard> _flashCardRepository;
+        //private  GenericRepository<UserRefreshToken> _userRefreshTokenRepository;
 
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
         }
 
-        public IGenericRepository<FlashCard> FlashCardRepository =>
-            _flashCardRepository ?? new GenericRepository<FlashCard>(_context);
+        //public IGenericRepository<FlashCard> FlashCardRepository =>
+        //    _flashCardRepository ?? new GenericRepository<FlashCard>(_context);
 
-        public IGenericRepository<UserRefreshToken> UserRefreshTokenRepository =>
-            _userRefreshTokenRepository ?? new GenericRepository<UserRefreshToken>(_context);
+        //public IGenericRepository<UserRefreshToken> UserRefreshTokenRepository =>
+        //    _userRefreshTokenRepository ?? new GenericRepository<UserRefreshToken>(_context);
         public async Task CommitAsync()
         {
             await _context.SaveChangesAsync();

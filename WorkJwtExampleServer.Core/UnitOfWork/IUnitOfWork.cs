@@ -10,8 +10,8 @@ namespace WorkJwtExampleServer.Core.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        IGenericRepository<FlashCard> FlashCardRepository { get; }
-        IGenericRepository<UserRefreshToken> UserRefreshTokenRepository { get; }
+        //IGenericRepository<FlashCard> FlashCardRepository { get; }
+        //IGenericRepository<UserRefreshToken> UserRefreshTokenRepository { get; }
         Task CommitAsync();
         void Commit();
     }

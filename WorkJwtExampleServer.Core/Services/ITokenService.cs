@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkJwtExampleServer.Core.DTOs;
+using WorkJwtExampleServer.Core.Entities;
 
 namespace WorkJwtExampleServer.Core.Services
 {
-    public class ITokenService
+    public interface ITokenService
     {
+        TokenDto CreateToken(AppUser appUser);
+        TokenDto CreateTokenByClient(ClientTokenDto clientTokenDto);
     }
 }
