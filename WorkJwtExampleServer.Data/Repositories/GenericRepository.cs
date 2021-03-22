@@ -16,9 +16,9 @@ namespace WorkJwtExampleServer.Data.Repositories
         private readonly AppDbContext _context;
         private readonly DbSet<TEntity> _dbSet;
 
-        public GenericRepository(DbContext context)
+        public GenericRepository(AppDbContext context)
         {
-            _context = context as AppDbContext;
+            _context = context;
             _dbSet = context.Set<TEntity>();
         }
 

@@ -8,6 +8,7 @@ using WorkJwtExampleServer.Core.Repositories;
 using WorkJwtExampleServer.Core.Services;
 using WorkJwtExampleServer.Core.UnitOfWork;
 using WorkJwtExampleServer.Data.Repositories;
+using WorkJwtExampleServer.Data.UnitOfWork;
 using WorkJwtExampleServer.Service.Services;
 
 namespace WorkJwtExampleServer.Service.Dependencies
@@ -17,10 +18,11 @@ namespace WorkJwtExampleServer.Service.Dependencies
         public static void AddCustomDependencyConfiguration(this IServiceCollection services)
         {
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddScoped(typeof(IGenericService<,>), typeof(IGenericService<,>));
-            services.AddScoped<IUnitOfWork, IUnitOfWork>();
+            services.AddScoped(typeof(IGenericService<,>), typeof(GenericService<,>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }

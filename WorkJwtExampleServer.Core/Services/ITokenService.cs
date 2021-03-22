@@ -11,6 +11,6 @@ namespace WorkJwtExampleServer.Core.Services
     public interface ITokenService
     {
         TokenDto CreateToken(AppUser appUser);
-        TokenDto CreateTokenByClient(ClientTokenDto clientTokenDto);
+        ClientTokenDto CreateTokenByClient(ClientDto clientDto);
     }
 }
