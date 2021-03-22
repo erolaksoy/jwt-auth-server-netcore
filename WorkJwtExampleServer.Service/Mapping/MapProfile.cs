@@ -13,8 +13,11 @@ namespace WorkJwtExampleServer.Service.Mapping
     {
         public MapProfile()
         {
-            CreateMap<FlashCard, FlashCardAddDto>().ReverseMap();
+            CreateMap<FlashCard, FlashCardDto>().ReverseMap();
             CreateMap<AppUser, AppUserLoginDto>().ReverseMap();
+            CreateMap<AppUser, CreateUserDto>().ReverseMap();
+            CreateMap<AppUser, AppUserDto>().ReverseMap();
+            
         }
     }
 }

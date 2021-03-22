@@ -8,8 +8,6 @@ using WorkJwtExampleServer.SharedLibrary.DTOs;
 
 namespace WorkJwtExampleServer.Api.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class CustomBaseController : ControllerBase
     {
         public IActionResult ActionResultInstance<T>(Response<T> response) where T : class

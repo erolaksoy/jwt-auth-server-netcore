@@ -17,6 +17,7 @@ using WorkJwtExampleServer.Core.Services;
 using WorkJwtExampleServer.Data.AppContext;
 using WorkJwtExampleServer.Service.Dependencies;
 using WorkJwtExampleServer.SharedLibrary.Configuration;
+using WorkJwtExampleServer.SharedLibrary.Extensions;
 
 namespace WorkJwtExampleServer.Api
 {
@@ -33,12 +34,7 @@ namespace WorkJwtExampleServer.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCustomDependencyConfiguration();
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WorkJwtExampleServer.Web", Version = "v1" });
-            });
-            
+
 
             services.AddDbContext<AppDbContext>(options =>
             {
@@ -53,13 +49,14 @@ namespace WorkJwtExampleServer.Api
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
             services.Configure<CustomTokenOption>(Configuration.GetSection("TokenOptions"));
-            var tokenOptions = Configuration.GetSection("TokenOptions").Get<CustomTokenOption>();
             services.Configure<List<ClientDto>>(Configuration.GetSection("Clients"));
-           
+
+            var tokenOptions = Configuration.GetSection("TokenOptions").Get<CustomTokenOption>();
+
             services.AddAuthentication(opt =>
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opts =>
             {
                 opts.TokenValidationParameters = new TokenValidationParameters()
@@ -75,28 +72,33 @@ namespace WorkJwtExampleServer.Api
                 };
 
             });
-            services.AddAuthorization();
-           
-          
+
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WorkJwtExampleServer.Web", Version = "v1" });
+            });
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WorkJwtExampleServer.Web v1"));
             }
-
+            //app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCustomExceptionHandler();
             app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-           
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

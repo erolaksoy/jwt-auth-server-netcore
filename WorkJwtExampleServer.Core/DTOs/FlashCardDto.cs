@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WorkJwtExampleServer.Core.DTOs
 {
-    public class FlashCardAddDto
+    public class FlashCardDto
     {
         public string Name { get; set; }
         public string MotherLanguageText { get; set; }
